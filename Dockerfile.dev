@@ -1,0 +1,10 @@
+FROM node:10
+WORKDIR /etc/wx/
+
+COPY package.json yarn.lock tsconfig.json ./
+
+RUN yarn install
+
+COPY targets.dev.js targets.js config.dev.js ./
+
+CMD ["yarn", "run", "dev"]

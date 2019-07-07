@@ -1,0 +1,15 @@
+dist/
+devDist/
+node_modules/
+.directory
+config.js
+!dist/bundle.js
+devData/db
+yarn-error.log
+logs/state
+logs/errors
+lambda
+config.dev.js
+config.js
+targets.dev.js
+targets.js

@@ -1,0 +1,19 @@
+FROM node:10
+WORKDIR /etc/wx/
+
+RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list
+RUN apt-get update && apt-get install -y zip
+
+COPY package.json yarn.lock tsconfig.json ./
+
+RUN yarn install
+
+COPY src/ src/
+
+RUN yarn run build && \
+    rm -rf node_modules && \
+    yarn install --production
+
+COPY config.js targets.js ./
+
+CMD ["zip", "-r", "./lambda/healthchecker.zip", "package.json", "config.js", "targets.js", "dist/", "node_modules"]

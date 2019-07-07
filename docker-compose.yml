@@ -1,0 +1,18 @@
+version: "3.3"
+
+services:
+    aws-lambda-build:
+        build:
+            context: .
+            dockerfile: Dockerfile.aws
+        volumes:
+            - "./lambda:/etc/wx/lambda"
+
+    healthchecker:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        environment:
+            - TZ=Europe/Zurich
+        volumes:
+            - "./src:/etc/wx/src"

@@ -1,0 +1,11 @@
+devData/
+devDist/
+.directory
+dist/
+docker-compose.yml
+Dockerfile
+Dockerfile.dev
+.eslintrc
+.git/
+node_modules/
+.wxrc
